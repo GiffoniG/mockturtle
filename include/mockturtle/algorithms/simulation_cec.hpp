@@ -83,7 +83,7 @@ public:
     unsigned var = _ntk.num_pis();
     unsigned memory;
     unsigned split_var = 0;
-    unsigned V = _ntk.num_gates();
+    unsigned V = _ntk._storage->nodes.size();
     bool cec = true;
 
     if ( var <= 6 )
