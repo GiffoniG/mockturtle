@@ -90,7 +90,7 @@ public:
       split_var = var;
     else
     {
-      for ( i = 7; i <= var; i++ )
+      for ( auto i = 7; i <= var; i++ )
       {
           memory = ( 32 + pow(2 , i - 3 )) * V;
 
