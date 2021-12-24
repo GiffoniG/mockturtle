@@ -35,10 +35,17 @@
 #include <kitty/constructors.hpp>
 #include <kitty/dynamic_truth_table.hpp>
 #include <kitty/operations.hpp>
+#include <kitty/static_truth_table.hpp>
+#include <kitty/kitty.hpp>
+#include <kitty/detail/constants.hpp>
 
 #include "../utils/node_map.hpp"
 #include "miter.hpp"
 #include "simulation.hpp"
+#include <math.h>
+#include <iostream>
+#include <cmath>
+using namespace kitty;
 
 namespace mockturtle
 {
