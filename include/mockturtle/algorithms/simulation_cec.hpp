@@ -71,10 +71,65 @@ public:
   {
   }
 
-  bool run()
+ bool run()
   {
-    /* TODO: write your implementation here */
-    return false;
+    unsigned var = _ntk.num_pis();
+    unsigned memory;
+    unsigned split_var = 0;
+    unsigned V = _ntk.num_gates();
+    bool cec = true;
+
+    if ( var <= 6 )
+      split_var = var;
+    else
+    {
+      for ( i = 7; i <= var; i++ )
+      {
+          memory = ( 32 + pow(2 , i - 3 ) * V;
+
+          if ( memory <= pow(2 , 29 );
+              split_var = i;
+      }
+    }
+
+    unsigned rounds = 2 ^ ( var - split_var );
+
+    _st.split_var = split_var;
+    _st.rounds = rounds;
+
+    pattern_t patterns( _ntk );
+
+    default_simulator<dynamic_truth_table> sim( _st.split_var );
+
+    for ( auto j = 0, j < _st.rounds, i++ )
+    {
+        _ntk.foreach_pi([&](auto const& input)
+            {
+        dynamic_truth_table tt( _st.split_var );
+        if ( input <= _st.split_var )
+          create_nth_var( tt, input - 1 );
+
+        if ( input <= _st.split_var )
+          patterns[input] = tt;
+        else 
+            if ( j >> ( input - _st.split_var - 1) % 2 )
+             patterns[input] = tt;
+            else
+             patterns[input] = ~tt;
+            }
+    
+     simulate_nodes( _ntk, patterns, sim );
+    
+     _ntk.foreach_po([&](auto const& output) 
+         {
+        if ( _ntk.is_complemented( output ) )
+          cec &= is_const0( ~patterns[output] );
+        else
+          cec &= is_const0( patterns[output] );
+      }
+         
+    }
+    return cec;
   }
 
 private:
