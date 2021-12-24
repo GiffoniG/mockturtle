@@ -85,9 +85,9 @@ public:
     {
       for ( i = 7; i <= var; i++ )
       {
-          memory = ( 32 + pow(2 , i - 3 ) * V;
+          memory = ( 32 + pow(2 , i - 3 )) * V;
 
-          if ( memory <= pow(2 , 29 );
+          if ( memory <= pow(2 , 29 ) );
               split_var = i;
       }
     }
@@ -101,7 +101,7 @@ public:
 
     default_simulator<dynamic_truth_table> sim( _st.split_var );
 
-    for ( auto j = 0, j < _st.rounds, i++ )
+    for ( auto j = 0, j < _st.rounds, j++ )
     {
         _ntk.foreach_pi([&](auto const& input)
             {
