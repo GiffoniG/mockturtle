@@ -94,7 +94,7 @@ public:
       {
           memory = ( 32 + pow(2 , i - 3 )) * V;
 
-          if ( memory <= pow(2 , 29 ) );
+          if ( memory <= pow(2 , 29 ) )
               split_var = i;
       }
     }
@@ -108,7 +108,7 @@ public:
 
     default_simulator<dynamic_truth_table> sim( _st.split_var );
 
-    for ( auto j = 0, j < _st.rounds, j++ )
+    for ( auto j = 0; j < _st.rounds; j++ )
     {
         _ntk.foreach_pi([&](auto const& input)
             {
@@ -118,12 +118,13 @@ public:
 
         if ( input <= _st.split_var )
           patterns[input] = tt;
-        else 
-            if ( j >> ( input - _st.split_var - 1) % 2 )
+        else {
+            if ( (j >> ( input - _st.split_var - 1)) % 2 )
              patterns[input] = tt;
             else
              patterns[input] = ~tt;
-            }
+             }
+            });
     
      simulate_nodes( _ntk, patterns, sim );
     
@@ -133,7 +134,7 @@ public:
           cec &= is_const0( ~patterns[output] );
         else
           cec &= is_const0( patterns[output] );
-      }
+      });
          
     }
     return cec;
